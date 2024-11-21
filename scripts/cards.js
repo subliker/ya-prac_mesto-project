@@ -104,6 +104,7 @@ const cardTemplate = document.querySelector('#card-template').content
 const cardItem = cardTemplate.querySelector('.card')
 
 const imagePopupElement = imagePopup.querySelector('.popup__image')
+const imagePopupCaption = imagePopup.querySelector('.popup__caption')
 
 function createCard(name, link){
   const cardItemCopy = cardItem.cloneNode(true)
@@ -119,6 +120,7 @@ function createCard(name, link){
   })
   cardItemCopy.querySelector('.card__image').addEventListener('click', (evt)=>{
     imagePopupElement.src = link  
+    imagePopupCaption.textContent = name
     openModal(imagePopup)
   })
   
