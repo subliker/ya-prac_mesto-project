@@ -5,6 +5,39 @@ import { openModal, closeModal } from '../components/modal.js'
 import { createCard } from '../components/card.js';
 import { enableValidation } from '../components/validate.js';
 
+function handleAvatarFormSubmit(event) {
+    event.preventDefault();
+
+    userAvatar.style.backgroundImage = "url("+avatarUrl.value+")"
+
+    closeModal(avatarPopup)
+}
+
+const userAvatar = document.querySelector(".profile__image")
+
+const editAvatarButton = document.querySelector(".profile__image")
+
+const avatarPopup = document.querySelector('.popup_type_avatar')
+
+const avatarForm = avatarPopup.querySelector(".popup__form")
+
+const avatarUrl = avatarForm.querySelector(".popup__input_type_url")
+
+const closeAvatarButton = avatarPopup.querySelector('.popup__close')
+
+editAvatarButton.addEventListener('click', () => {
+    if (userAvatar.src){
+        avatarUrl.value = userAvatar.src
+    }
+
+    openModal(avatarPopup);
+})
+console.log(avatarForm)
+console.log(closeAvatarButton)
+closeAvatarButton.addEventListener('click', () => closeModal(avatarPopup));
+
+avatarForm.addEventListener('submit', handleAvatarFormSubmit);
+
 function handleProfileFormSubmit(event) {
     event.preventDefault(); 
 
@@ -21,11 +54,11 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 
 const profilePopup = document.querySelector('.popup_type_edit');
 
-const profileFrom = profilePopup.querySelector('.popup__form');
+const profileForm = profilePopup.querySelector('.popup__form');
 
-const profileNameInput = profilePopup.querySelector('.popup__input_type_name'); // Поле ввода имени
-const profileTextInput = profilePopup.querySelector('.popup__input_type_description'); // Поле ввода описания
-const closeProfileButton = profilePopup.querySelector('.popup__close'); // Кнопка закрытия попапа
+const profileNameInput = profilePopup.querySelector('.popup__input_type_name');
+const profileTextInput = profilePopup.querySelector('.popup__input_type_description');
+const closeProfileButton = profilePopup.querySelector('.popup__close');
 
 editProfileButton.addEventListener('click', () => {
     profileNameInput.value = userName.textContent;
@@ -36,7 +69,7 @@ editProfileButton.addEventListener('click', () => {
 
 closeProfileButton.addEventListener('click', () => closeModal(profilePopup));
 
-profileFrom.addEventListener('submit', handleProfileFormSubmit);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 const imagePopup = document.querySelector('.popup_type_image');
 
@@ -61,9 +94,9 @@ const addCardButton = document.querySelector('.profile__add-button');
 const cardPopup = document.querySelector('.popup_type_new-card');
 const cardFrom = cardPopup.querySelector('.popup__form');
 
-const cardNameInput = cardPopup.querySelector('.popup__input_type_card-name'); // Поле названия карточки
-const cardLinkInput = cardPopup.querySelector('.popup__input_type_url'); // Поле ссылки на изображение
-const closeCardButton = cardPopup.querySelector('.popup__close'); // Кнопка закрытия попапа
+const cardNameInput = cardPopup.querySelector('.popup__input_type_card-name');
+const cardLinkInput = cardPopup.querySelector('.popup__input_type_url');
+const closeCardButton = cardPopup.querySelector('.popup__close');
 
 addCardButton.addEventListener('click', () => {
     cardNameInput.value = '';
@@ -89,6 +122,7 @@ initialCards.forEach((item) => cardsList.append(createCard(item.name, item.link)
 profilePopup.classList.add('popup_is-animated');
 cardPopup.classList.add('popup_is-animated');
 imagePopup.classList.add('popup_is-animated');
+avatarPopup.classList.add('popup_is-animated');
 
 const validationSettings = {
     formClass: '.popup__form', 
