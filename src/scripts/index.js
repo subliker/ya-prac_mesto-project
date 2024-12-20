@@ -186,7 +186,7 @@ Promise.all([getUserInfo(), getInitialCards()])
         userAvatar.style.backgroundImage = `url(${user.avatar})`; 
 
         cards.forEach(cardData => { 
-            const cardElement = createCardElement(cardData.name, cardData.link);
+            const cardElement = createCardElement(cardData, currentUser);
             cardsList.appendChild(cardElement); 
         }); 
     }) 

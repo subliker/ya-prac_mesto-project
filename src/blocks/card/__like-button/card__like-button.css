@@ -18,3 +18,14 @@
 .card__like-button:hover {
   opacity: 0.6;
 }
+
+.card__like-button_active {
+  background: transparent url('../../../images/like-active.svg') no-repeat;
+  background-size: 21px 18px;
+}
+
+.card__like-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+}
